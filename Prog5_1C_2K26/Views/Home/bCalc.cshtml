@@ -4,7 +4,8 @@
 <h1>Bienvenido a la @ViewData["Title"]</h1>
 
 
-<form asp-controller="Home" asp-action="bcalc" method="post">
+<form asp-controller="Home"
+      method="post">
     Numero 1 : <input name="n1" type="text" /> <br /><br />
     Numero 2 : <input name="n2" type="text" @if (ViewBag.Action == "RaizCuadrada")
                       {
@@ -12,12 +13,14 @@
     }
  /> <br /><br />
 
-    <input type="submit" value="+" formaction="Suma" /> &nbsp;&nbsp;&nbsp;
-    <input type="submit" value="-" formaction="Resta" /> &nbsp;&nbsp;&nbsp;
-    <input type="submit" value="x" formaction="Multiplicacion" /> &nbsp;&nbsp;&nbsp;
-    <input type="submit" value="/" formaction="Division" /> &nbsp;&nbsp;&nbsp;
-    <input type="submit" value="√" formaction="RaizCuadrada" /> &nbsp;&nbsp;&nbsp;
-    <input type="submit" value="%" formaction="Modulo" /> &nbsp;&nbsp;&nbsp;
+    <input type="submit" value="+" asp-action="Sumar" /> &nbsp;&nbsp;&nbsp;
+    <input type="submit" value="-" asp-action="Restar" /> &nbsp;&nbsp;&nbsp;
+    <input type="submit" value="x" asp-action="Multiplicacion" /> &nbsp;&nbsp;&nbsp;
+    <input type="submit" value="/" asp-action="Division" /> &nbsp;&nbsp;&nbsp;
+    <input type="submit" value="√" asp-action="RaizCuadrada" /> &nbsp;&nbsp;&nbsp;
+    <input type="submit" value="%" asp-action="Modulo" /> &nbsp;&nbsp;&nbsp;
+    <input type="submit" value="^" asp-action="Potencia" />
+
 
 </form>
 
