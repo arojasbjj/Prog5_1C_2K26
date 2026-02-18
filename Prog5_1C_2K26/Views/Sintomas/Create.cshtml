@@ -1,12 +1,11 @@
-﻿@model Prog5_1C_2K26.Models.CentroVacunacion
+﻿@model Prog5_1C_2K26.Models.Sintoma
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Crear Síntoma";
 }
 
-<h1>Create</h1>
+<h1>Crear Síntoma</h1>
 
-<h4>CentroVacunacion</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -17,20 +16,13 @@
                 <input asp-for="descripcion" class="form-control" />
                 <span asp-validation-for="descripcion" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
-                <label asp-for="ProvincialId" class="control-label"></label>
-                <input asp-for="ProvincialId" class="form-control" />
-                <span asp-validation-for="ProvincialId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Crear" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Volver al listado</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

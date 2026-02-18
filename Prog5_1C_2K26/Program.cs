@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Prog5_1C_2K26.Data;
 using Prog5_1C_2K26.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,3 +31,4 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+

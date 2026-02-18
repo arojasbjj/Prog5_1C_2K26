@@ -3,29 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Prog5_1C_2K26.Models;
 using Prog5_1C_2K26.Data;
 
 namespace Prog5_1C_2K26.Controllers
 {
-    public class CentroVacunacionsController : Controller
+    public class SintomasController : Controller
     {
         private readonly AppDbContext _context;
 
-        public CentroVacunacionsController(AppDbContext context)
+        public SintomasController(AppDbContext context)
         {
             _context = context;
         }
 
-        // GET: CentroVacunacions
+        // GET: Sintomas
         public async Task<IActionResult> Index()
         {
-            return View(await _context.CentroVacunacion.ToListAsync());
+            return View(await _context.Sintoma.ToListAsync());
         }
 
-        // GET: CentroVacunacions/Details/5
+        // GET: Sintomas/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +32,37 @@ namespace Prog5_1C_2K26.Controllers
                 return NotFound();
             }
 
-            var centroVacunacion = await _context.CentroVacunacion
+            var sintoma = await _context.Sintoma
                 .FirstOrDefaultAsync(m => m.id == id);
-            if (centroVacunacion == null)
+            if (sintoma == null)
             {
                 return NotFound();
             }
 
-            return View(centroVacunacion);
+            return View(sintoma);
         }
 
-        // GET: CentroVacunacions/Create
+        // GET: Sintomas/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: CentroVacunacions/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Sintomas/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,descripcion,ProvincialId")] CentroVacunacion centroVacunacion)
+        public async Task<IActionResult> Create([Bind("id,descripcion")] Sintoma sintoma)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(centroVacunacion);
+                _context.Add(sintoma);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(centroVacunacion);
+            return View(sintoma);
         }
 
-        // GET: CentroVacunacions/Edit/5
+        // GET: Sintomas/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +70,20 @@ namespace Prog5_1C_2K26.Controllers
                 return NotFound();
             }
 
-            var centroVacunacion = await _context.CentroVacunacion.FindAsync(id);
-            if (centroVacunacion == null)
+            var sintoma = await _context.Sintoma.FindAsync(id);
+            if (sintoma == null)
             {
                 return NotFound();
             }
-            return View(centroVacunacion);
+            return View(sintoma);
         }
 
-        // POST: CentroVacunacions/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Sintomas/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,descripcion,ProvincialId")] CentroVacunacion centroVacunacion)
+        public async Task<IActionResult> Edit(int id, [Bind("id,descripcion")] Sintoma sintoma)
         {
-            if (id != centroVacunacion.id)
+            if (id != sintoma.id)
             {
                 return NotFound();
             }
@@ -97,12 +92,12 @@ namespace Prog5_1C_2K26.Controllers
             {
                 try
                 {
-                    _context.Update(centroVacunacion);
+                    _context.Update(sintoma);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CentroVacunacionExists(centroVacunacion.id))
+                    if (!SintomaExists(sintoma.id))
                     {
                         return NotFound();
                     }
@@ -113,10 +108,10 @@ namespace Prog5_1C_2K26.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(centroVacunacion);
+            return View(sintoma);
         }
 
-        // GET: CentroVacunacions/Delete/5
+        // GET: Sintomas/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,34 +119,34 @@ namespace Prog5_1C_2K26.Controllers
                 return NotFound();
             }
 
-            var centroVacunacion = await _context.CentroVacunacion
+            var sintoma = await _context.Sintoma
                 .FirstOrDefaultAsync(m => m.id == id);
-            if (centroVacunacion == null)
+            if (sintoma == null)
             {
                 return NotFound();
             }
 
-            return View(centroVacunacion);
+            return View(sintoma);
         }
 
-        // POST: CentroVacunacions/Delete/5
+        // POST: Sintomas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var centroVacunacion = await _context.CentroVacunacion.FindAsync(id);
-            if (centroVacunacion != null)
+            var sintoma = await _context.Sintoma.FindAsync(id);
+            if (sintoma != null)
             {
-                _context.CentroVacunacion.Remove(centroVacunacion);
+                _context.Sintoma.Remove(sintoma);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CentroVacunacionExists(int id)
+        private bool SintomaExists(int id)
         {
-            return _context.CentroVacunacion.Any(e => e.id == id);
+            return _context.Sintoma.Any(e => e.id == id);
         }
     }
 }

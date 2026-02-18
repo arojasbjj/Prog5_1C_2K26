@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Prog5_1C_2K26.ActionFilters;// Se agrega el namespace donde se encuentra el Action Filter personalizado, para cumplir con el action filter
 using Prog5_1C_2K26.Models;
+using Prog5_1C_2K26.Data;
 
 namespace Prog5_1C_2K26.Controllers
 {
