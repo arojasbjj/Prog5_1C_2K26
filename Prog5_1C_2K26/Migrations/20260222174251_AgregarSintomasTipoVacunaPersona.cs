@@ -5,7 +5,7 @@
 namespace Prog5_1C_2K26.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class AgregarSintomasTipoVacunaPersona : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

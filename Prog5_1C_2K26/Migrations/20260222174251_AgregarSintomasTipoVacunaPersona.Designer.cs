@@ -11,8 +11,8 @@ using Prog5_1C_2K26.Data;
 namespace Prog5_1C_2K26.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260218232718_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20260222174251_AgregarSintomasTipoVacunaPersona")]
+    partial class AgregarSintomasTipoVacunaPersona
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
