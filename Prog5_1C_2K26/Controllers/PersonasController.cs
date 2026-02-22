@@ -21,7 +21,7 @@ namespace Prog5_1C_2K26.Controllers
         // GET: Personas
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Persona.ToListAsync());
+            return View(await _context.Personas.ToListAsync());
         }
 
         // GET: Personas/Details/5
@@ -32,7 +32,7 @@ namespace Prog5_1C_2K26.Controllers
                 return NotFound();
             }
 
-            var persona = await _context.Persona
+            var persona = await _context.Personas
                 .FirstOrDefaultAsync(m => m.id == id);
             if (persona == null)
             {
@@ -70,7 +70,7 @@ namespace Prog5_1C_2K26.Controllers
                 return NotFound();
             }
 
-            var persona = await _context.Persona.FindAsync(id);
+            var persona = await _context.Personas.FindAsync(id);
             if (persona == null)
             {
                 return NotFound();
@@ -119,7 +119,7 @@ namespace Prog5_1C_2K26.Controllers
                 return NotFound();
             }
 
-            var persona = await _context.Persona
+            var persona = await _context.Personas
                 .FirstOrDefaultAsync(m => m.id == id);
             if (persona == null)
             {
@@ -134,10 +134,10 @@ namespace Prog5_1C_2K26.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var persona = await _context.Persona.FindAsync(id);
+            var persona = await _context.Personas.FindAsync(id);
             if (persona != null)
             {
-                _context.Persona.Remove(persona);
+                _context.Personas.Remove(persona);
             }
 
             await _context.SaveChangesAsync();
@@ -146,7 +146,7 @@ namespace Prog5_1C_2K26.Controllers
 
         private bool PersonaExists(int id)
         {
-            return _context.Persona.Any(e => e.id == id);
+            return _context.Personas.Any(e => e.id == id);
         }
     }
 }

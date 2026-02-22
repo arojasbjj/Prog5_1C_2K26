@@ -8,10 +8,9 @@ namespace Prog5_1C_2K26.Data
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
         }
-
-        public DbSet<CentroVacunacion> CentroVacunacion { get; set; } = default;
-        public DbSet<Sintoma> Sintoma { get; set; } = default;
-        public DbSet<TipoVacuna> TipoVacuna { get; set; } = default;
-        public DbSet<Persona> Persona { get; set; } = default;
+        public DbSet<Persona> Personas { get; set; }
+        public DbSet<Sintoma> Sintomas { get; set; }
+        public DbSet<TipoVacuna> TipoVacunas { get; set; }
+        public DbSet<CentroVacunacion> CentrosVacunacion { get; set; }
     }
 }

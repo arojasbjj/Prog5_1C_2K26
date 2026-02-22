@@ -21,7 +21,7 @@ namespace Prog5_1C_2K26.Controllers
         // GET: Sintomas
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Sintoma.ToListAsync());
+            return View(await _context.Sintomas.ToListAsync());
         }
 
         // GET: Sintomas/Details/5
@@ -32,7 +32,7 @@ namespace Prog5_1C_2K26.Controllers
                 return NotFound();
             }
 
-            var sintoma = await _context.Sintoma
+            var sintoma = await _context.Sintomas
                 .FirstOrDefaultAsync(m => m.id == id);
             if (sintoma == null)
             {
@@ -70,7 +70,7 @@ namespace Prog5_1C_2K26.Controllers
                 return NotFound();
             }
 
-            var sintoma = await _context.Sintoma.FindAsync(id);
+            var sintoma = await _context.Sintomas.FindAsync(id);
             if (sintoma == null)
             {
                 return NotFound();
@@ -119,7 +119,7 @@ namespace Prog5_1C_2K26.Controllers
                 return NotFound();
             }
 
-            var sintoma = await _context.Sintoma
+            var sintoma = await _context.Sintomas
                 .FirstOrDefaultAsync(m => m.id == id);
             if (sintoma == null)
             {
@@ -134,10 +134,10 @@ namespace Prog5_1C_2K26.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var sintoma = await _context.Sintoma.FindAsync(id);
+            var sintoma = await _context.Sintomas.FindAsync(id);
             if (sintoma != null)
             {
-                _context.Sintoma.Remove(sintoma);
+                _context.Sintomas.Remove(sintoma);
             }
 
             await _context.SaveChangesAsync();
@@ -146,7 +146,7 @@ namespace Prog5_1C_2K26.Controllers
 
         private bool SintomaExists(int id)
         {
-            return _context.Sintoma.Any(e => e.id == id);
+            return _context.Sintomas.Any(e => e.id == id);
         }
     }
 }

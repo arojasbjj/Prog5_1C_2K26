@@ -22,7 +22,7 @@ namespace Prog5_1C_2K26.Controllers
         // GET: CentroVacunacions
         public async Task<IActionResult> Index()
         {
-            return View(await _context.CentroVacunacion.ToListAsync());
+            return View(await _context.CentrosVacunacion.ToListAsync());
         }
 
         // GET: CentroVacunacions/Details/5
@@ -33,7 +33,7 @@ namespace Prog5_1C_2K26.Controllers
                 return NotFound();
             }
 
-            var centroVacunacion = await _context.CentroVacunacion
+            var centroVacunacion = await _context.CentrosVacunacion
                 .FirstOrDefaultAsync(m => m.id == id);
             if (centroVacunacion == null)
             {
@@ -73,7 +73,7 @@ namespace Prog5_1C_2K26.Controllers
                 return NotFound();
             }
 
-            var centroVacunacion = await _context.CentroVacunacion.FindAsync(id);
+            var centroVacunacion = await _context.CentrosVacunacion.FindAsync(id);
             if (centroVacunacion == null)
             {
                 return NotFound();
@@ -124,7 +124,7 @@ namespace Prog5_1C_2K26.Controllers
                 return NotFound();
             }
 
-            var centroVacunacion = await _context.CentroVacunacion
+            var centroVacunacion = await _context.CentrosVacunacion
                 .FirstOrDefaultAsync(m => m.id == id);
             if (centroVacunacion == null)
             {
@@ -139,10 +139,10 @@ namespace Prog5_1C_2K26.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var centroVacunacion = await _context.CentroVacunacion.FindAsync(id);
+            var centroVacunacion = await _context.CentrosVacunacion.FindAsync(id);
             if (centroVacunacion != null)
             {
-                _context.CentroVacunacion.Remove(centroVacunacion);
+                _context.CentrosVacunacion.Remove(centroVacunacion);
             }
 
             await _context.SaveChangesAsync();
@@ -151,7 +151,7 @@ namespace Prog5_1C_2K26.Controllers
 
         private bool CentroVacunacionExists(int id)
         {
-            return _context.CentroVacunacion.Any(e => e.id == id);
+            return _context.CentrosVacunacion.Any(e => e.id == id);
         }
     }
 }

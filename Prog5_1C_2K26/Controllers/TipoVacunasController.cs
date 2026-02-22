@@ -22,7 +22,7 @@ namespace Prog5_1C_2K26.Controllers
         public async Task<IActionResult> Index()
         {
             return View("~/Views/TiposVacuna/Index.cshtml",
-                await _context.TipoVacuna.ToListAsync());
+                await _context.TipoVacunas.ToListAsync());
         }
 
         // GET: TipoVacunas/Details/5
@@ -30,7 +30,7 @@ namespace Prog5_1C_2K26.Controllers
         {
             if (id == null) return NotFound();
 
-            var tipoVacuna = await _context.TipoVacuna
+            var tipoVacuna = await _context.TipoVacunas
                 .FirstOrDefaultAsync(m => m.id == id);
             if (tipoVacuna == null) return NotFound();
 
@@ -62,7 +62,7 @@ namespace Prog5_1C_2K26.Controllers
         {
             if (id == null) return NotFound();
 
-            var tipoVacuna = await _context.TipoVacuna.FindAsync(id);
+            var tipoVacuna = await _context.TipoVacunas.FindAsync(id);
             if (tipoVacuna == null) return NotFound();
 
             return View("~/Views/TiposVacuna/Edit.cshtml", tipoVacuna);
@@ -99,7 +99,7 @@ namespace Prog5_1C_2K26.Controllers
         {
             if (id == null) return NotFound();
 
-            var tipoVacuna = await _context.TipoVacuna
+            var tipoVacuna = await _context.TipoVacunas
                 .FirstOrDefaultAsync(m => m.id == id);
             if (tipoVacuna == null) return NotFound();
 
@@ -111,9 +111,9 @@ namespace Prog5_1C_2K26.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var tipoVacuna = await _context.TipoVacuna.FindAsync(id);
+            var tipoVacuna = await _context.TipoVacunas.FindAsync(id);
             if (tipoVacuna != null)
-                _context.TipoVacuna.Remove(tipoVacuna);
+                _context.TipoVacunas.Remove(tipoVacuna);
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -121,7 +121,7 @@ namespace Prog5_1C_2K26.Controllers
 
         private bool TipoVacunaExists(int id)
         {
-            return _context.TipoVacuna.Any(e => e.id == id);
+            return _context.TipoVacunas.Any(e => e.id == id);
         }
     }
 }
