@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Prog5_1C_2K26.Models;
 using Prog5_1C_2K26.Data;
+using Newtonsoft.Json;
 
 namespace Prog5_1C_2K26.Controllers
 {
@@ -48,10 +49,40 @@ namespace Prog5_1C_2K26.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Buscar(string texto)
+        {
+            List<Sintoma> sintomas = BuscarSintomas(texto);
+            return View("Buscar", sintomas);
+        }
+
+        public IActionResult Buscar()
+        {
+            return View(new List<Sintoma>());
+        }
+
+        [NonAction]
+
+        private static List<Sintoma> BuscarSintomas(string texto)
+        {
+            List<Sintoma> sintomas = new List<Sintoma>();
+            string apiUrl = "https://localhost:7299/api/ObtenerSintomas";
+
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = client.GetAsync(apiUrl + "/GetSintomas?texto="+ texto).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                sintomas = JsonConvert.DeserializeObject<List<Sintoma>>(response.Content.ReadAsStringAsync().Result);
+            }
+
+            return sintomas;
+        }
+        
+
         // POST: Sintomas/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,descripcion")] Sintoma sintoma)
+        public async Task<IActionResult> Create([Bind("id,Nombre,descripcion")] Sintoma sintoma)
         {
             if (ModelState.IsValid)
             {
@@ -81,7 +112,7 @@ namespace Prog5_1C_2K26.Controllers
         // POST: Sintomas/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,descripcion")] Sintoma sintoma)
+        public async Task<IActionResult> Edit(int id, [Bind("id,Nombre,descripcion")] Sintoma sintoma)
         {
             if (id != sintoma.id)
             {
@@ -148,5 +179,6 @@ namespace Prog5_1C_2K26.Controllers
         {
             return _context.Sintomas.Any(e => e.id == id);
         }
+
     }
 }
