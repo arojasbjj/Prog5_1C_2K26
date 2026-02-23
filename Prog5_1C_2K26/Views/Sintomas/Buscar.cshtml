@@ -1,0 +1,41 @@
+﻿@model List<Prog5_1C_2K26.Models.Sintoma>
+
+<h2>Buscar Síntomas (WebAPI)</h2>
+
+<form asp-action="Buscar" method="post">
+    <div class="form-group">
+        <label>Buscar síntoma</label>
+        <input type="text" name="texto" class="form-control"
+               placeholder="Nombre o descripción" />
+    </div>
+
+    <br />
+    <button type="submit" class="btn btn-primary">Buscar</button>
+</form>
+
+<hr />
+
+@if (Model != null && Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Nombre</td>
+                    <td>@item.descripcion</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else if (Context.Request.Method == "POST")
+{
+    <p>No hay resultados para mostrar.</p>
+}
